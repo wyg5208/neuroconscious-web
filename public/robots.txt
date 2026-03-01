@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://neuroconscious.link
+
+# Sitemaps
+Sitemap: https://neuroconscious.link/sitemap.xml

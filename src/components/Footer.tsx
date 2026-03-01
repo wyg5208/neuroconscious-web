@@ -1,6 +1,11 @@
+'use client';
+
 import Link from 'next/link';
+import { useNCT } from '@/lib/useTranslation';
 
 export default function Footer() {
+  const nct = useNCT();
+  
   return (
     <footer className="border-t border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-black">
       <div className="container mx-auto px-4 py-12">
@@ -11,27 +16,27 @@ export default function Footer() {
               NeuroConscious Transformer
             </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              用 Transformer 重构意识神经科学
+              {nct.hero.titlePrefix}{nct.hero.titleHighlight}{nct.hero.titleSuffix}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold mb-4 text-gray-900 dark:text-gray-100">快速链接</h4>
+            <h4 className="font-semibold mb-4 text-gray-900 dark:text-gray-100">{nct.nav.quickstart === '快速开始' ? '快速链接' : 'Quick Links'}</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/technology" className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors">
-                  技术概览
+                  {nct.nav.technology}
                 </Link>
               </li>
               <li>
                 <Link href="/docs" className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors">
-                  文档中心
+                  {nct.nav.docsHome === '文档首页' ? '文档中心' : nct.nav.docsHome}
                 </Link>
               </li>
               <li>
                 <Link href="/about" className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors">
-                  关于项目
+                  {nct.nav.about}
                 </Link>
               </li>
             </ul>
@@ -39,7 +44,7 @@ export default function Footer() {
 
           {/* Resources */}
           <div>
-            <h4 className="font-semibold mb-4 text-gray-900 dark:text-gray-100">资源</h4>
+            <h4 className="font-semibold mb-4 text-gray-900 dark:text-gray-100">{nct.nav.quickstart === '快速开始' ? '资源' : 'Resources'}</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <a 
@@ -58,7 +63,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
                 >
-                  arXiv 论文
+                  arXiv
                 </a>
               </li>
             </ul>
@@ -66,10 +71,10 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-semibold mb-4 text-gray-900 dark:text-gray-100">联系</h4>
+            <h4 className="font-semibold mb-4 text-gray-900 dark:text-gray-100">{nct.nav.quickstart === '快速开始' ? '联系' : 'Contact'}</h4>
             <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
               <li>Yonggang Weng</li>
-              <li>马来西亚理工大学 (UTM)</li>
+              <li>{nct.nav.quickstart === '快速开始' ? '马来西亚理工大学 (UTM)' : 'Universiti Teknologi Malaysia (UTM)'}</li>
               <li>WENG YONGGANG(翁勇刚)</li>
             </ul>
           </div>

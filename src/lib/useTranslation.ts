@@ -11,14 +11,21 @@ const translations: { [key: string]: any } = {
 };
 
 export function useNCT() {
-  const searchParams = useSearchParams();
+  const [searchParams, setSearchParams] = useState<URLSearchParams | null>(null);
   const [locale, setLocale] = useState<'zh' | 'en'>('zh');
   const [isInitialized, setIsInitialized] = useState(false);
+
+  // 客户端初始化时获取 searchParams
+  useEffect(() => {
+    // 在客户端运行时获取 searchParams
+    const params = new URLSearchParams(window.location.search);
+    setSearchParams(params);
+  }, []);
   
   useEffect(() => {
     // 从 URL 参数或 localStorage 读取语言设置
     const urlLang = searchParams?.get('lang') as 'zh' | 'en' | null;
-    const savedLang = localStorage.getItem('locale') as 'zh' | 'en' | null;
+    const savedLang = typeof window !== 'undefined' ? localStorage.getItem('locale') as 'zh' | 'en' | null : null;
     const defaultLang: 'zh' | 'en' = urlLang || savedLang || 'zh';
     setLocale(defaultLang);
     setIsInitialized(true);
